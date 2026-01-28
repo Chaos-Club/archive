@@ -1,11 +1,7 @@
-# How to install:
-
-`npm install`
-
 # How to run examples:
 
-`npx nodemon pascal-triangle.ts`
+`python3 pascal-triangle.py`
 
 or
 
-`npx ts-node pascal-triangle.ts`
+`python3 pascal-triangle1.py`
