@@ -44,4 +44,4 @@ def display_pt(level):
 
 
 if __name__ == '__main__':
-    display_pt(14)
+    display_pt(15)

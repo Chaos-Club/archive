@@ -7,8 +7,8 @@
   "author": "Timofei",
   "license": "MIT",
   "scripts": {
-    "dev": "esbuild 01/index.ts chaos-game/index.ts l-systems_koch/index.ts l-systems_sierpinski/index.ts --bundle --outdir=. --outbase=. --entry-names=[dir]/bundle --watch --servedir=.",
-    "build": "esbuild 01/index.ts chaos-game/index.ts l-systems_koch/index.ts l-systems_sierpinski/index.ts --bundle --outdir=. --outbase=. --entry-names=[dir]/bundle --minify",
+    "dev": "esbuild chaos-game/index.ts l-systems_koch/index.ts l-systems_sierpinski/index.ts --bundle --outdir=. --outbase=. --entry-names=[dir]/bundle --watch --servedir=.",
+    "build": "esbuild chaos-game/index.ts l-systems_koch/index.ts l-systems_sierpinski/index.ts --bundle --outdir=. --outbase=. --entry-names=[dir]/bundle --minify",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
