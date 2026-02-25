@@ -4,7 +4,7 @@
 import { type LSystemDef, expand, fmtAngle } from "../utils/l-system";
 import { walk, drawSegs } from "../utils/turtle";
 
-// ── System definition ─────────────────────────────────────────────────────────
+//  System definition
 
 // Sierpiński Arrowhead Curve
 // Uses two symbols A and B that alternate the turn direction each iteration.
@@ -45,15 +45,13 @@ const SYSTEM: LSystemDef = {
 */
 
 
-// ── Canvas ────────────────────────────────────────────────────────────────────
-
+// Canvas
 const canvas = document.createElement("canvas");
 canvas.style.cssText = "position:absolute;left:0;top:0;cursor:pointer;";
 document.body.appendChild(canvas);
 const ctx = canvas.getContext("2d")!;
 
-// ── Overlay ───────────────────────────────────────────────────────────────────
-
+// Overlay 
 const overlay = document.createElement("div");
 overlay.style.cssText = [
   "position:fixed", "top:20px", "left:20px",
@@ -71,14 +69,12 @@ hint.style.cssText = [
 ].join(";");
 document.body.appendChild(hint);
 
-// ── State ─────────────────────────────────────────────────────────────────────
-
+// State 
 let iteration = 0;
 let sentence = SYSTEM.axiom;
 const MAX_LENGTH = 300_000;
 
-// ── Rendering ─────────────────────────────────────────────────────────────────
-
+// Rendering 
 function draw(): void {
   const W = canvas.width, H = canvas.height;
   ctx.clearRect(0, 0, W, H);
@@ -106,8 +102,7 @@ function updateOverlay(): void {
     : `maximum expansion reached`;
 }
 
-// ── Events ────────────────────────────────────────────────────────────────────
-
+// Events
 canvas.addEventListener("click", () => {
   const next = expand(sentence, SYSTEM.rules);
   if (next.length > MAX_LENGTH) return;
@@ -122,8 +117,7 @@ window.addEventListener("resize", () => {
   draw();
 });
 
-// ── Boot ──────────────────────────────────────────────────────────────────────
-
+// Boot
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 draw();

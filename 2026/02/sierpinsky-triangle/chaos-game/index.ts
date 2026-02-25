@@ -1,15 +1,13 @@
 // Sierpinski Triangle — Chaos Game
 // Click to throw points: 100 → 1 000 → +5 000 per click
 
-// ── Canvas setup ────────────────────────────────────────────────────────────
-
+// Canvas setup
 const canvas = document.createElement("canvas");
 canvas.style.cssText = "position:absolute;left:0;top:0;cursor:pointer;";
 document.body.appendChild(canvas);
 const ctx = canvas.getContext("2d")!;
 
-// ── Info overlay ─────────────────────────────────────────────────────────────
-
+// Info overlay 
 const info = document.createElement("div");
 info.style.cssText = [
   "position:fixed",
@@ -24,8 +22,7 @@ info.style.cssText = [
 ].join(";");
 document.body.appendChild(info);
 
-// ── State ────────────────────────────────────────────────────────────────────
-
+// State 
 let totalPoints = 0;
 let clickCount = 0;
 
@@ -34,8 +31,7 @@ let px = 0;
 let py = 0;
 let chaosStarted = false;
 
-// ── Triangle geometry ─────────────────────────────────────────────────────────
-
+// Triangle geometry
 type Vertex = [number, number];
 
 /** Returns the three vertices of an equilateral triangle centred in the canvas. */
@@ -48,14 +44,13 @@ function getVertices(): [Vertex, Vertex, Vertex] {
   const cx = w / 2;
   const top = h / 2 - triH / 2;          // y of apex so the triangle is vertically centred
 
-  const apex: Vertex       = [cx,                top];
-  const botLeft: Vertex    = [cx - side / 2,     top + triH];
-  const botRight: Vertex   = [cx + side / 2,     top + triH];
+  const apex: Vertex = [cx, top];
+  const botLeft: Vertex = [cx - side / 2, top + triH];
+  const botRight: Vertex = [cx + side / 2, top + triH];
   return [apex, botLeft, botRight];
 }
 
-// ── Drawing helpers ───────────────────────────────────────────────────────────
-
+// Drawing helpers
 function drawOutline(): void {
   const [a, b, c] = getVertices();
   ctx.beginPath();
@@ -68,8 +63,7 @@ function drawOutline(): void {
   ctx.stroke();
 }
 
-// ── Chaos game ────────────────────────────────────────────────────────────────
-
+// Chaos game
 function throwPoints(count: number): void {
   const verts = getVertices();
 
@@ -92,8 +86,7 @@ function throwPoints(count: number): void {
   updateInfo();
 }
 
-// ── Info text ─────────────────────────────────────────────────────────────────
-
+// Info text 
 function nextBatchSize(): number {
   if (clickCount === 0) return 100;
   if (clickCount === 1) return 1_000;
@@ -111,23 +104,21 @@ function updateInfo(): void {
   }
 }
 
-// ── Resize ────────────────────────────────────────────────────────────────────
-
+// Resize
 function resize(): void {
-  canvas.width  = window.innerWidth;
+  canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
   // Resizing clears the canvas; reset chaos state so next click restarts cleanly.
   chaosStarted = false;
-  totalPoints  = 0;
-  clickCount   = 0;
+  totalPoints = 0;
+  clickCount = 0;
 
   drawOutline();
   updateInfo();
 }
 
-// ── Event listeners ───────────────────────────────────────────────────────────
-
+// Event listeners
 canvas.addEventListener("click", () => {
   const count = nextBatchSize();
   clickCount++;
@@ -136,6 +127,5 @@ canvas.addEventListener("click", () => {
 
 window.addEventListener("resize", resize);
 
-// ── Boot ──────────────────────────────────────────────────────────────────────
-
+// Boot
 resize();
