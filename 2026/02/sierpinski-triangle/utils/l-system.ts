@@ -1,26 +1,19 @@
-// L-System utilities
-
-/** Definition of an L-System. */
-export interface LSystemDef {
+export interface LSystem {
   name: string;
-  /** Turning angle in radians. */
   angle: number;
-  /** Initial string (axiom). */
   axiom: string;
-  /** Map from symbol to its replacement string. */
   rules: Record<string, string>;
-  /** Symbols that draw a line (default: ["F", "G"] if not specified). */
   drawSymbols?: string[];
 }
 
-/** Expand an L-system sentence by one iteration. */
+// Expand an L-system sentence by applying production rules once.
 export function expand(s: string, rules: Record<string, string>): string {
   let out = "";
   for (const ch of s) out += rules[ch] ?? ch;
   return out;
 }
 
-/** Format an angle in radians as a human-readable string (e.g. "π/3"). */
+// Format a radian angle as a readable string (e.g., "π/3").
 export function fmtAngle(r: number): string {
   const table: [number, string][] = [
     [Math.PI / 6, "π/6"],
@@ -35,4 +28,3 @@ export function fmtAngle(r: number): string {
   }
   return r.toFixed(4) + " rad";
 }
-
