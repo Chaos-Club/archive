@@ -13,8 +13,12 @@ export function expand(s: string, rules: Record<string, string>): string {
   return out;
 }
 
-// Format a radian angle as a readable string (e.g., "π/3").
+// Format a radian angle as a readable string (e.g., "60°" or "π/3").
 export function fmtAngle(r: number): string {
+  const deg = (r * 180) / Math.PI;
+  if (Math.abs(deg - Math.round(deg)) < 0.01) {
+    return Math.round(deg) + "°";
+  }
   const table: [number, string][] = [
     [Math.PI / 6, "π/6"],
     [Math.PI / 4, "π/4"],
