@@ -6,8 +6,8 @@
   "repository": "https://github.com/iefomit/01-typescript",
   "author": "Timofei",
   "license": "MIT",
-  "scripts": {
-    "dev": "esbuild chaos-game/index.ts l-systems_koch/index.ts l-system-playground/index.ts --bundle --outdir=. --outbase=. --entry-names=[dir]/bundle --watch --servedir=.",
+"scripts": {
+    "dev": "esbuild chaos-game/index.ts l-systems_koch/index.ts l-system-playground/index.ts --bundle --outdir=. --outbase=. --entry-names=[dir]/bundle --watch & npx http-server . -p 8000 -a 0.0.0.0",
     "build": "esbuild chaos-game/index.ts l-systems_koch/index.ts l-system-playground/index.ts --bundle --outdir=. --outbase=. --entry-names=[dir]/bundle --minify",
     "typecheck": "tsc --noEmit"
   },
