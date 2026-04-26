@@ -43,12 +43,12 @@ const deg = (d: number) => (d * Math.PI) / 180;
 // };
 
 // 2. basic branching tree
-const SYSTEM: LSystem = {
-  name: "Branching Tree",
-  angle: Math.PI / 5,
-  axiom: "F",
-  rules: { F: "F[+F]F[-F]F" },
-};
+// const SYSTEM: LSystem = {
+//   name: "Branching Tree",
+//   angle: Math.PI / 5,
+//   axiom: "F",
+//   rules: { F: "F[+F]F[-F]F" },
+// };
 
 // 3. classic sierpinski triangle
 // const SYSTEM: LSystem = {
@@ -111,7 +111,18 @@ const SYSTEM: LSystem = {
 //   rules: { F: "+F--F+" },
 // };
 
-// 10. make your own! copy this block and fill in the blanks:
+// 10. Clouds, change angle by five
+const SYSTEM: LSystem = {
+  name: "Tim's Fractal",
+  angle: deg(70),
+  axiom: "A",
+  rules: { A: "-B-B+A+", B: "B+A+B", },
+  drawSymbols: ["A", "B"],
+};
+
+
+
+// 11. make your own! copy this block and fill in the blanks:
 // const SYSTEM: LSystem = {
 //   name: "My Fractal",
 //   angle: deg(60),
